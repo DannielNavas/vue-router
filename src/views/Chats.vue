@@ -21,9 +21,7 @@ const chats = ref([
             </div>
         </aside>
         <article>
-            {{ this.$route }}
-            <br>
-            {{ this.$route.params.chatId }}
+            <router-view />
         </article>
     </div>
 </template>
