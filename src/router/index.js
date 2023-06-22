@@ -11,7 +11,8 @@ const router = createRouter({
     {
       path: "/about",
       component: import("../views/AboutView.vue")
-    }
+    },
+    { path: "/chats", component: import("../views/Chats.vue") },
   ],
 });
 
