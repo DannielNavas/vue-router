@@ -6,13 +6,14 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: HomeView
+      component: HomeView,
     },
     {
       path: "/about",
-      component: import("../views/AboutView.vue")
+      component: import("../views/AboutView.vue"),
     },
     { path: "/chats", component: import("../views/Chats.vue") },
+    { path: "/chats/:chatId", component: import("../views/Chats.vue") },
   ],
 });
 
