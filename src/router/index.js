@@ -70,9 +70,9 @@ router.beforeEach((to, from) => {
   // if (to.path === "/home") return {name: 'about'}
   // return true;
 
-  if(to.meta?.requiredsAuth && to.meta?.roles?.includes("admin")) {
-    return {path: "/session"}
-  }
+  // if(to.meta?.requiredsAuth && to.meta?.roles?.includes("admin")) {
+  //   return {path: "/session"}
+  // }
 });
 
 export default router;
