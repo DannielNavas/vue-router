@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import NotFound from "../views/404View.vue";
 import HomeView from "../views/HomeView.vue";
 
+const stage = import.meta.env.VITE_STAGE;
+
 const router = createRouter({
   // TODO: modo html5
   history: createWebHistory(),
@@ -74,6 +76,13 @@ const router = createRouter({
     },
   ],
 });
+
+if (stage === "dev") {
+  router.addRoute({
+    path: "/profile",
+    component: () => import("../views/ProfileView.vue"),
+  });
+}
 
 router.beforeEach((to, from) => {
   // console.log("beforeEach", to, from);
