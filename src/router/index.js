@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
   // TODO: modo html5
-  // history: createWebHistory(),
-  history: createWebHashHistory(),
+  history: createWebHistory(),
+  // history: createWebHashHistory(),
   routes: [
   //   {
   //     path: "/home",
@@ -55,6 +55,13 @@ const router = createRouter({
       ],
     },
   ],
+});
+
+
+router.beforeEach((to, from) => {
+  console.log("beforeEach", to, from);
+  if (to.path === "/home") return {name: 'about'}
+  return true;
 });
 
 export default router;
