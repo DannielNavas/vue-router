@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import NotFound from "../views/404View.vue";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -6,10 +7,19 @@ const router = createRouter({
   history: createWebHistory(),
   // history: createWebHashHistory(),
   routes: [
-  //   {
-  //     path: "/home",
-  //     redirect: {name: "home"},
-  // },
+    //   {
+    //     path: "/home",
+    //     redirect: {name: "home"},
+    // },
+    {
+      path: "/404",
+      component: NotFound,
+      name: "404",
+    },
+    {
+      path: "/:catchAll(.*)*",
+      redirect: { name: "404" },
+    },
     {
       path: "/",
       name: "home",
@@ -17,18 +27,18 @@ const router = createRouter({
       alias: ["/home"],
       meta: {
         requiredsAuth: false,
-      }
+      },
     },
     {
       path: "/session",
-      component: () => import('../views/SessionView.vue'),
+      component: () => import("../views/SessionView.vue"),
       children: [
         {
           path: "",
           components: {
             default: () => import("../views/LoginView.vue"),
             register: () => import("../views/RegisterView.vue"),
-          }
+          },
         },
       ],
     },
@@ -42,10 +52,11 @@ const router = createRouter({
       component: () => import("../views/Chats.vue"),
       meta: {
         requiredsAuth: true,
-        roles: ["admin"]
+        roles: ["admin"],
       },
       children: [
         {
+          // path: ":chatId(⧵⧵d+)",
           path: ":chatId",
           component: () => import("../views/ChatView.vue"),
           // TODO: toma los params de la ruta y los pasa por los props
@@ -64,12 +75,10 @@ const router = createRouter({
   ],
 });
 
-
 router.beforeEach((to, from) => {
   // console.log("beforeEach", to, from);
   // if (to.path === "/home") return {name: 'about'}
   // return true;
-
   // if(to.meta?.requiredsAuth && to.meta?.roles?.includes("admin")) {
   //   return {path: "/session"}
   // }
