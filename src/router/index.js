@@ -40,7 +40,15 @@ const router = createRouter({
           path: ":chatId",
           component: () => import("../views/ChatView.vue"),
           // TODO: toma los params de la ruta y los pasa por los props
-          props: true,
+          // props: true,
+          // props: {
+          //   chatId:
+          // },
+          props: (route) => {
+            return {
+              chatId: route.params.chatId,
+            };
+          },
         },
       ],
     },
